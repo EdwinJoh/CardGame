@@ -11,16 +11,16 @@ namespace Service
 {
     public class ServiceManager : IServiceManager
     {
-        //private readonly Lazy<ITestModelService> _testModelService;
-        //public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager
-        //logger,IMapper mapper)
-        //{
-        //    _testModelService = new Lazy<ITestModelService>(() => new
-        //    TestModelService(repositoryManager, logger,mapper));
-           
-        //}
-        //public ITestModelService TestModelService => _testModelService.Value;
-        
+        private readonly Lazy<CardHistoryService> _cardHistoryService;
+        public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager
+        logger, IMapper mapper)
+        {
+            _cardHistoryService = new Lazy<CardHistoryService>(() => new
+            CardHistoryService(repositoryManager, logger, mapper));
+
+        }
+        public CardHistoryService TestModelService => _cardHistoryService.Value;
+
 
     }
 }
