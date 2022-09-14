@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models
+namespace Contacts.Enums
 {
-    public class HeartCard
+    public enum Suits
     {
-
+        Heart,
+        Spade,
+        Diamond,
+        Club
     }
 }
