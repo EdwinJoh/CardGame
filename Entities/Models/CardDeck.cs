@@ -10,10 +10,9 @@ public class CardDeck
 
     public void FillDeck()
     {
-        for (int i = 0; i < 52; i++)
+        for (int i = 0; i < NumberOfCards; i++)
         {
             CardSuit suite = (CardSuit)(Math.Floor((decimal)i / 13));
-
             int val = i % 13 + 2;
             Cards.Add(new Card(val, suite));
         }

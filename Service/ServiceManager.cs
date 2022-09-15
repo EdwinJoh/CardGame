@@ -16,5 +16,4 @@ public class ServiceManager : IServiceManager
     }
     public ICardService CardService => _cardHistoryService.Value;
 
-
 }

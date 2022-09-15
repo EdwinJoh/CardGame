@@ -8,11 +8,14 @@ public class Card : ICard
     public int Id { get; set; }
     public int Rank { get; set; }
     public CardSuit Suits { get; set; }
+    public CardColor Color { get; set; }
+
     public Card(int rank, CardSuit suits)
     {
         Rank = rank;
         Suits = suits;
     }
+
     public string NamedValue
     {
         get
@@ -39,4 +42,5 @@ public class Card : ICard
             return name;
         }
     }
+   
 }

@@ -3,9 +3,9 @@
 public class CardHistory
 {
     public int Id { get; set; }
-    public Card? CardOne { get; set; }
-    public Card? CardTwo { get; set; }
-    public Card? CardThree { get; set; }
-    public Card? CardFour { get; set; }
-    public Card? CardFive { get; set; }
+    public string? CardOne { get; set; }
+    public string? CardTwo { get; set; }
+    public string? CardThree { get; set; }
+    public string? CardFour { get; set; }
+    public string? CardFive { get; set; }
 }
