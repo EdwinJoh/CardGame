@@ -33,9 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B29A2E88-261F-4E2F-81DA-926B564AF90E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGameApi", "GameCardApi\CardGameApi.csproj", "{CC24D884-2D5F-4942-AA33-1BE8F5625C06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGameApi", "GameCardApi\CardGameApi.csproj", "{CC24D884-2D5F-4942-AA33-1BE8F5625C06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame.Presentation", "CardGame.Presentation\CardGame.Presentation.csproj", "{3B3F4C18-0B56-43ED-9EF5-A3DC814C44BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGame.Presentation", "CardGame.Presentation\CardGame.Presentation.csproj", "{3B3F4C18-0B56-43ED-9EF5-A3DC814C44BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame.Test", "CardGame.Test\CardGame.Test.csproj", "{C47F78E4-130F-45BE-91F8-327D4780C2E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{3B3F4C18-0B56-43ED-9EF5-A3DC814C44BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B3F4C18-0B56-43ED-9EF5-A3DC814C44BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B3F4C18-0B56-43ED-9EF5-A3DC814C44BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C47F78E4-130F-45BE-91F8-327D4780C2E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47F78E4-130F-45BE-91F8-327D4780C2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47F78E4-130F-45BE-91F8-327D4780C2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47F78E4-130F-45BE-91F8-327D4780C2E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{BAB8A318-E19E-4273-ADFF-CD500FF5BE5F} = {6B569486-2F98-46D0-B425-C83E9E9BC7A8}
 		{CC24D884-2D5F-4942-AA33-1BE8F5625C06} = {0323120B-B93B-469A-B7E6-E9E950CBD2B5}
 		{3B3F4C18-0B56-43ED-9EF5-A3DC814C44BB} = {0323120B-B93B-469A-B7E6-E9E950CBD2B5}
+		{C47F78E4-130F-45BE-91F8-327D4780C2E3} = {B29A2E88-261F-4E2F-81DA-926B564AF90E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57CD52FB-17C3-416B-A54B-C05FC83FD4B3}

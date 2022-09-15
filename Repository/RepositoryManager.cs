@@ -10,16 +10,16 @@ namespace Repository
     public sealed class RepositoryManager : IRepositoryManager
     {
         private readonly RepositoryContext _repositoryContext;
-        //private readonly Lazy<ITestModelRepository> _modelRepository;
-        //public RepositoryManager(RepositoryContext repositoryContext)
-        //{
-        //    _repositoryContext = repositoryContext;
-        //    _modelRepository = new Lazy<ITestModelRepository>(() => new
-        //    TestModelRepository(repositoryContext));
+        private readonly Lazy<CardRepository> _cardRepository;
+        public RepositoryManager(RepositoryContext repositoryContext)
+        {
+            _repositoryContext = repositoryContext;
+            _cardRepository = new Lazy<CardRepository>(() => new
+            CardRepository(repositoryContext));
 
-        //}
+        }
 
-        //public ITestModelRepository TestModel => _modelRepository.Value;
+        public ICardRepository CardHistory => _cardRepository.Value;
         public void Save() => _repositoryContext.SaveChanges();
     }
 }

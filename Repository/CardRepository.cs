@@ -16,6 +16,8 @@ namespace Repository
         }
         public async Task<IEnumerable<CardHistory>> GetAllCardHistoryAsync(bool trackChanges) =>
             await FindAll(trackChanges).OrderBy(x => x.Id).ToListAsync();
-            
+
+        public async Task<CardHistory> GetCardHistoryAsync(int id, bool trackChangs) =>
+            await FindByCondition(x => x.Id.Equals(id), trackChangs).SingleOrDefaultAsync();
     }
 }

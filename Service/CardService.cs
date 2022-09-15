@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class CardHistoryService :ICardHistoryService
+    public class CardService : ICardService
     {
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        public CardHistoryService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public CardService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;

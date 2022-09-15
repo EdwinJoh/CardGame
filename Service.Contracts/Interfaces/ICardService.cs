@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service.Contracts.Interfaces
 {
-    public interface ICardHistoryService
+    public interface ICardService
     {
 
     }
