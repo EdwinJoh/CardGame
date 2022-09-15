@@ -5,17 +5,20 @@ namespace Entities.Models;
 
 public class Card : ICard
 {
-    public int Id { get; set; }
+    public int Id { get; set; }// behövs ??? sparas inte i databasen HALLÅÅÅÅÅÅÅÅÅÅ
     public int Rank { get; set; }
     public CardSuit Suits { get; set; }
-    public CardColor Color { get; set; }
+    
 
-    public Card(int rank, CardSuit suits)
+   public ICard Clone()
     {
-        Rank = rank;
-        Suits = suits;
+        return (ICard)MemberwiseClone();
     }
 
+    public void GetCard()
+    {
+        Console.WriteLine($"{Rank}, {Suits}");
+    }
     public string NamedValue
     {
         get
