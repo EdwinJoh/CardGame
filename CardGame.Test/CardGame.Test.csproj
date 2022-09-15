@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="Moq" Version="4.18.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -25,6 +26,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Contacts\Contacts.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
+    <ProjectReference Include="..\Service.Contracts\Service.Contracts.csproj" />
+    <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
 
 </Project>
