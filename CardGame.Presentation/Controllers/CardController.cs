@@ -8,12 +8,19 @@ using System.Threading.Tasks;
 
 namespace CardGame.Presentation.Controllers
 {
-    [Route("Card")]
+    [Route("card")]
     [ApiController]
     public class CardController : ControllerBase
     {
         private readonly IServiceManager _service;
         public CardController(IServiceManager service) => _service = service;
+
+        [HttpGet]
+        public async Task<IActionResult> GetCardHistory()
+        {
+            var cards = await _service.CardService.GetAllCardHistoryAsync(trackChanges: false);
+            return Ok(cards);
+        }
         
     }
 }

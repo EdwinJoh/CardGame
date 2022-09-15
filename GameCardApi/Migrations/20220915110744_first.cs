@@ -5,7 +5,7 @@
 namespace CardGameApi.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstIntital : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,11 +16,11 @@ namespace CardGameApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CardOne = table.Column<int>(type: "int", nullable: false),
-                    CardTwo = table.Column<int>(type: "int", nullable: false),
-                    CardThree = table.Column<int>(type: "int", nullable: false),
-                    CardFour = table.Column<int>(type: "int", nullable: false),
-                    CardFive = table.Column<int>(type: "int", nullable: false)
+                    CardOne = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CardTwo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CardThree = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CardFour = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CardFive = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

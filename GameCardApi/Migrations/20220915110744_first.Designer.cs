@@ -11,8 +11,8 @@ using Repository;
 namespace CardGameApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20220914114531_FirstIntital")]
-    partial class FirstIntital
+    [Migration("20220915110744_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,20 +32,25 @@ namespace CardGameApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CardFive")
-                        .HasColumnType("int");
+                    b.Property<string>("CardFive")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CardFour")
-                        .HasColumnType("int");
+                    b.Property<string>("CardFour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CardOne")
-                        .HasColumnType("int");
+                    b.Property<string>("CardOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CardThree")
-                        .HasColumnType("int");
+                    b.Property<string>("CardThree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CardTwo")
-                        .HasColumnType("int");
+                    b.Property<string>("CardTwo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

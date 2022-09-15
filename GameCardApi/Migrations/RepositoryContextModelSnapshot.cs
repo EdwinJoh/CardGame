@@ -21,25 +21,6 @@ namespace CardGameApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Entities.Models.Card", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Rank")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Suits")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Card");
-                });
-
             modelBuilder.Entity("Entities.Models.CardHistory", b =>
                 {
                     b.Property<int>("Id")
@@ -48,77 +29,29 @@ namespace CardGameApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CardFiveId")
-                        .HasColumnType("int");
+                    b.Property<string>("CardFive")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CardFourId")
-                        .HasColumnType("int");
+                    b.Property<string>("CardFour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CardOneId")
-                        .HasColumnType("int");
+                    b.Property<string>("CardOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CardThreeId")
-                        .HasColumnType("int");
+                    b.Property<string>("CardThree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CardTwoId")
-                        .HasColumnType("int");
+                    b.Property<string>("CardTwo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CardFiveId");
-
-                    b.HasIndex("CardFourId");
-
-                    b.HasIndex("CardOneId");
-
-                    b.HasIndex("CardThreeId");
-
-                    b.HasIndex("CardTwoId");
 
                     b.ToTable("CardHistories");
-                });
-
-            modelBuilder.Entity("Entities.Models.CardHistory", b =>
-                {
-                    b.HasOne("Entities.Models.Card", "CardFive")
-                        .WithMany()
-                        .HasForeignKey("CardFiveId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Models.Card", "CardFour")
-                        .WithMany()
-                        .HasForeignKey("CardFourId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Models.Card", "CardOne")
-                        .WithMany()
-                        .HasForeignKey("CardOneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Models.Card", "CardThree")
-                        .WithMany()
-                        .HasForeignKey("CardThreeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Models.Card", "CardTwo")
-                        .WithMany()
-                        .HasForeignKey("CardTwoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CardFive");
-
-                    b.Navigation("CardFour");
-
-                    b.Navigation("CardOne");
-
-                    b.Navigation("CardThree");
-
-                    b.Navigation("CardTwo");
                 });
 #pragma warning restore 612, 618
         }
