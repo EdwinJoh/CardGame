@@ -23,6 +23,7 @@ public class CardDeck
             Card cardCopy = (Card)CardPrototype.Clone();
             cardCopy.Rank = val;
             cardCopy.Suits = suite;
+            Cards.Add(cardCopy);
         }
         return Cards;
     }

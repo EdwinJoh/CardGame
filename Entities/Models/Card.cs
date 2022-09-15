@@ -5,7 +5,7 @@ namespace Entities.Models;
 
 public class Card : ICard
 {
-    public int Id { get; set; }// behövs ??? sparas inte i databasen HALLÅÅÅÅÅÅÅÅÅÅ
+    
     public int Rank { get; set; }
     public CardSuit Suits { get; set; }
     
@@ -27,19 +27,19 @@ public class Card : ICard
             switch (Rank)
             {
                 case (14):
-                    name = "Ace";
+                    name = $"Ace, {Suits}";
                     break;
                 case (13):
-                    name = "King";
+                    name = $"King, {Suits}";
                     break;
                 case (12):
-                    name = "Queen";
+                    name = $"Queen, { Suits}";
                     break;
                 case (11):
-                    name = "Jack";
+                    name = $"Jack, {Suits}";
                     break;
                 default:
-                    name = Rank.ToString();
+                    name = $"{Rank.ToString()}, {Suits}";
                     break;
             }
             return name;

@@ -21,6 +21,13 @@ namespace CardGame.Presentation.Controllers
             var cards = await _service.CardService.GetAllCardHistoryAsync(trackChanges: false);
             return Ok(cards);
         }
-        
+        [HttpGet("Deck")]
+        public async Task<IActionResult> GetNewDeck()
+        {
+            var deck = await _service.CardService.GetNewDeck();
+            return Ok(deck);
+        }
+
+
     }
 }
