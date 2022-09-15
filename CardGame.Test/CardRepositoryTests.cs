@@ -3,32 +3,31 @@ using Entities.Models;
 using Moq;
 using Repository;
 
-namespace CardGame.Test
+namespace CardGame.Test;
+
+public class CardRepositoryTests
 {
-    public class CardRepositoryTests
+    private readonly ICardRepository _cardRepository;
+    private readonly Mock<IRepositoryManager> _repositoryManagerMock = new();
+    private readonly Mock<ILoggerManager> _loggerManagerMock = new();
+
+   
+    [Fact]
+    public void GetCardHistoryAsync_ShouldReturnaCardHistory_IfExsist()
     {
-        private readonly ICardRepository _cardRepository;
-        private readonly Mock<IRepositoryManager> _repositoryManagerMock = new();
-        private readonly Mock<ILoggerManager> _loggerManagerMock = new();
+        //Arrange
+        var cardHistoryId = 1;
+        bool trackChanges = false;
 
-       
-        [Fact]
-        public void GetCardHistoryAsync_ShouldReturnaCardHistory_IfExsist()
+        CardHistory card = new CardHistory
         {
-            //Arrange
-            var cardHistoryId = 1;
-            bool trackChanges = false;
+            Id = cardHistoryId
+        };
 
-            CardHistory card = new CardHistory
-            {
-                Id = cardHistoryId
-            };
+        //Act
+        _repositoryManagerMock.Setup(x => x.CardHistory.GetCardHistoryAsync(cardHistoryId, trackChanges));
 
-            //Act
-            _repositoryManagerMock.Setup(x => x.CardHistory.GetCardHistoryAsync(cardHistoryId, trackChanges));
-
-            //Assert
-            Assert.Equal(cardHistoryId, card.Id);
-        }
+        //Assert
+        Assert.Equal(cardHistoryId, card.Id);
     }
 }

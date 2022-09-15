@@ -1,15 +1,9 @@
 ﻿using Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Contacts.Interfaces
+namespace Contacts.Interfaces;
+
+public interface ICardRepository
 {
-    public interface ICardRepository
-    {
-        Task<IEnumerable<CardHistory>> GetAllCardHistoryAsync(bool trackChanges);
-        Task<CardHistory> GetCardHistoryAsync(int id,bool trackChanges);
-    }
+    Task<IEnumerable<CardHistory>> GetAllCardHistoryAsync(bool trackChanges);
+    Task<CardHistory> GetCardHistoryAsync(int id, bool trackChanges);
 }

@@ -1,13 +1,12 @@
 ﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Repository
+namespace Repository;
+
+public class RepositoryContext : DbContext
 {
-    public class RepositoryContext : DbContext
+    public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options)
     {
-        public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options)
-        {
-        }
-        public DbSet<CardHistory> CardHistories { get; set; }
     }
+    public DbSet<CardHistory> CardHistories { get; set; }
 }
