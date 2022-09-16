@@ -20,10 +20,10 @@ public class CardService : ICardService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<CardHisotryDto>> GetAllCardHistoryAsync(bool trackChanges)
+    public async Task<IEnumerable<CardHistoryDto>> GetAllCardHistoryAsync(bool trackChanges)
     {
         var cardHistory = await _repository.CardHistory.GetAllCardHistoryAsync(trackChanges);
-        var cardHistoryDto = _mapper.Map<IEnumerable<CardHisotryDto>>(cardHistory);
+        var cardHistoryDto = _mapper.Map<IEnumerable<CardHistoryDto>>(cardHistory);
         return cardHistoryDto;
     }
 
@@ -31,10 +31,10 @@ public class CardService : ICardService
     {
 
         var deck = DeckCard.FillDeck();
-        CheckIfDeckIsFilled(deck);
-
         deck = ShuffleDeckOfCards(deck);
-        return Task.FromResult(deck.ToList());
+        
+        var cardDto = _mapper.Map<List<Card>>(deck);
+        return Task.FromResult(cardDto.ToList());
     }
 
     public List<Card> ShuffleDeckOfCards(List<Card> DeckOfCards)

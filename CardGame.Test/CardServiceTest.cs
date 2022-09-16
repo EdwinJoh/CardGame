@@ -30,7 +30,7 @@ public class CardServiceTest
         };
 
     [Fact]
-    public async void GetAllCardHistoryAsync_ShouldReturnListOfCardHistory()
+    public  void GetAllCardHistoryAsync_ShouldReturnListOfCardHistory()
     {
         bool trackChanges = false;
         //Arrange

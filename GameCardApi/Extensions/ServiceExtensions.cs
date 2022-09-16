@@ -1,4 +1,5 @@
-﻿using Contacts.Interfaces;
+﻿using CardGame.Presentation.ActionFilters;
+using Contacts.Interfaces;
 using LoggerService;
 using Microsoft.EntityFrameworkCore;
 using Repository;
@@ -36,5 +37,8 @@ public static class ServiceExtensions
     IConfiguration configuration) =>
     services.AddDbContext<RepositoryContext>(opts =>
     opts.UseSqlServer(configuration.GetConnectionString("sqlConnection")!));
+
+    public static void ConfigureValidationFilter(this IServiceCollection services) =>
+        services.AddScoped<ValidationFilterAttribute>();
 
 }

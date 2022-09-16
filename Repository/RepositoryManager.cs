@@ -9,11 +9,12 @@ public sealed class RepositoryManager : IRepositoryManager
     public RepositoryManager(RepositoryContext repositoryContext)
     {
         _repositoryContext = repositoryContext;
+
         _cardRepository = new Lazy<CardRepository>(() => new
         CardRepository(repositoryContext));
 
     }
 
     public ICardRepository CardHistory => _cardRepository.Value;
-    public void Save() => _repositoryContext.SaveChanges();
+    public async Task SaveAsync() => await _repositoryContext.SaveChangesAsync();
 }

@@ -14,4 +14,5 @@ public class CardRepository : RepositoryBase<CardHistory>, ICardRepository
 
     public async Task<CardHistory> GetCardHistoryAsync(int id, bool trackChangs) =>
         await FindByCondition(x => x.Id.Equals(id), trackChangs).SingleOrDefaultAsync();
+    public void CreateCardHistory(CardHistory card) => Create(card);
 }

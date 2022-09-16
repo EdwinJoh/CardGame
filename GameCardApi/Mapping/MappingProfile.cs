@@ -8,6 +8,10 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<CardHistory, CardHisotryDto>();
+        CreateMap<CardHistory, CardHistoryDto>();
+
+        CreateMap<HandForCreationDto,CardHistory>();
+
+        CreateMap<CardHistoryDto, CardHistory>();
     }
 }

@@ -3,4 +3,5 @@
 public interface IServiceManager
 {
     ICardService CardService { get; }
+    IHandService HandService { get; }
 }

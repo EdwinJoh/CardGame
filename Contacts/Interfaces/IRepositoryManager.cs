@@ -3,5 +3,5 @@
 public interface IRepositoryManager
 {
     ICardRepository CardHistory { get; }
-    void Save();
+    Task SaveAsync();
 }
