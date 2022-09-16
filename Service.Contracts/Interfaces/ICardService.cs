@@ -7,4 +7,5 @@ public interface ICardService
 {
     Task<IEnumerable<CardHisotryDto>> GetAllCardHistoryAsync(bool trackChanges);
     Task<List<Card>> GetNewDeck();
+    List<Card> ShuffleDeckOfCards(List<Card> DeckOfCrads);
 }

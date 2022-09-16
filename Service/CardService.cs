@@ -12,6 +12,7 @@ public class CardService : ICardService
     private readonly IRepositoryManager _repository;
     private readonly ILoggerManager _logger;
     private readonly IMapper _mapper;
+    public CardDeck DeckCard { get; set; } = new CardDeck();
     public CardService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
     {
         _repository = repository;
@@ -28,14 +29,21 @@ public class CardService : ICardService
 
     public Task<List<Card>> GetNewDeck()
     {
-        CardDeck newDeck = new();
-        var deck = newDeck.FillDeck();
 
+        var deck = DeckCard.FillDeck();
         CheckIfDeckIsFilled(deck);
 
+        deck = ShuffleDeckOfCards(deck);
         return Task.FromResult(deck.ToList());
     }
 
+    public List<Card> ShuffleDeckOfCards(List<Card> DeckOfCards)
+    {
+        CheckIfDeckIsFilled(DeckOfCards);
+        DeckOfCards = DeckCard.ShuffleCards(DeckOfCards);
+
+        return DeckOfCards;
+    }
     public void CheckIfDeckIsFilled(List<Card> cards)
     {
         if (cards.Count < 52)

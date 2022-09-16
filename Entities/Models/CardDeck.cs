@@ -27,5 +27,19 @@ public class CardDeck
         }
         return Cards;
     }
+    public List<Card> ShuffleCards(List<Card> DeckOfCards)
+    {
+        int i, j;
+        Random rnd = new Random();
+        for (int k = 0; k < DeckOfCards.Count; k++)
+        {
+            i = (rnd.Next(NumberOfCards));
+            j = (rnd.Next(NumberOfCards));
+            Card temp = DeckOfCards[i];
+            DeckOfCards[i] = DeckOfCards[j];
+            DeckOfCards[j] = temp;
+        }
+        return DeckOfCards;
+    }
 }
-//Todo:Flytta till service lagret ?
+
