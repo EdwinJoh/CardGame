@@ -1,0 +1,17 @@
+﻿.card-body {
+    /*display: flex;*/
+    align-items: stretch;
+}
+
+.box-left {
+    text-align: left;
+    
+}
+
+.box-center {
+    text-align: center;
+}
+
+.box-right {
+    text-align: right;
+}

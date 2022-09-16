@@ -27,19 +27,19 @@ public class Card : ICard
             switch (Rank)
             {
                 case (14):
-                    name = $"Ace, {Suits}";
+                    name = $"Ace";
                     break;
                 case (13):
-                    name = $"King, {Suits}";
+                    name = $"King";
                     break;
                 case (12):
-                    name = $"Queen, { Suits}";
+                    name = $"Queen";
                     break;
                 case (11):
-                    name = $"Jack, {Suits}";
+                    name = $"Jack";
                     break;
                 default:
-                    name = $"{Rank.ToString()}, {Suits}";
+                    name = $"{Rank.ToString()}";
                     break;
             }
             return name;

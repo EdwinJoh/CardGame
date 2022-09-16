@@ -14,4 +14,9 @@ public class RequestService : IRequestService
         var respons = await _httpClient.GetFromJsonAsync<IEnumerable<CardHistory>>("card");
         return respons!;
     }
+    public async Task<List<Card>> GetNewDeck()
+    {
+        var respons = await _httpClient.GetFromJsonAsync<List<Card>>("card/deck");
+        return respons!;
+    }
 }

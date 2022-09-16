@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/p"
 @inject IRequestService _request
 <link rel="stylesheet" href="_content/Radzen.Blazor/css/default-base.css">
 <link rel="stylesheet" href="_content/Radzen.Blazor/css/default.css">
@@ -12,25 +12,14 @@
 else
 {
     <div class="row">
-        <div class="column">
-            <p>123</p>
-        </div>
-        <div class="column">
-            <p>123</p>
 
-        </div>
-        <div class="column">
-            <p>123</p>
-
-        </div>
-    </div>
-
-    @*<div class="row">
         @foreach (var card in CardDeck)
         {
             <CardComponent CardInDeck="card" />
         }
-    </div>*@
+
+    </div>
+
 }
 
 

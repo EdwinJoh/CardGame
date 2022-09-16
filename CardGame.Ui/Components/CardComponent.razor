@@ -1,0 +1,29 @@
+﻿
+
+
+
+<div class="col-sm-3">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="box-left">
+                <h1>@CardInDeck.NamedValue</h1>
+            </div>
+
+            <div class="box-center">
+                <h4>@CardInDeck.Suits</h4>
+            </div>
+
+            <div class="box-right">
+                <h1>@CardInDeck.NamedValue</h1>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Card CardInDeck { get; set; }
+}
