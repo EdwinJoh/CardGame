@@ -27,5 +27,7 @@ public class HandService :IHandService
         var handToReturn = _mapper.Map<CardHistoryDto>(handEntity);
         return handToReturn;
     }
-    
+   
+
+
 }

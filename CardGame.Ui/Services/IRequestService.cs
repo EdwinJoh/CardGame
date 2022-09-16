@@ -6,4 +6,6 @@ public interface IRequestService
 {
     Task<IEnumerable<CardHistory>> GetAllCardHistoriesAsync();
     Task<List<Card>> GetNewDeck();
+    
+    
 }

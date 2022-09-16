@@ -21,4 +21,7 @@ public class HandController :ControllerBase
         var saveHand = await _service.HandService.SaveHandAsync(hand);
         return NoContent();
     }
+    
+    
+  
 }

@@ -13,9 +13,11 @@ else
 {
     <div class="row">
 
+
         @foreach (var card in CardDeck)
         {
-            <CardComponent CardInDeck="card" />
+            <CardComponent CardInDeck="card" column="3" />
+
         }
 
     </div>

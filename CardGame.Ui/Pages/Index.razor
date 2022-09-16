@@ -11,26 +11,29 @@
 }
 else
 {
-    <div class="row">
-        <div class="column">
-            <p>123</p>
-        </div>
-        <div class="column">
-            <p>123</p>
+    @if (!GameStarted)
+    {
+        <div class="wrap" style="width:100%">
+            <div>
+                <div class="wrap" style="width: 100%" align="center">
 
+                    <button class="button" @onclick="(() => StartGame())">Start Game</button>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <p>123</p>
+    }
+    else
+    {
+        <div class="row">
 
+            @foreach (var card in FiveCard)
+            {
+                <CardComponent CardInDeck="card" column="4" />
+                
+               
+            }
         </div>
-    </div>
-
-    @*<div class="row">
-        @foreach (var card in CardDeck)
-        {
-            <CardComponent CardInDeck="card" />
-        }
-    </div>*@
+    }
 }
 
 
@@ -42,9 +45,18 @@ else
 @code {
 
     private IEnumerable<Card> CardDeck;
+    private IEnumerable<Card> FiveCard;
+    private bool GameStarted = false;
+
     protected override async Task OnInitializedAsync()
     {
         CardDeck = await _request.GetNewDeck();
+    }
+    private void StartGame()
+    {
+        FiveCard = CardDeck.Take(5);
+
+        GameStarted = true;
     }
 
 }
