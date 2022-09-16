@@ -29,10 +29,10 @@ else
             @foreach (var card in FiveCard)
             {
                 <CardComponent CardInDeck="card" column="4" />
-                
-               
+
             }
         </div>
+        <RadzenButton Click=@(args => OnClick()) Text="Replace Cards" Icon="refresh" ButtonStyle="ButtonStyle.Success" />
     }
 }
 
@@ -44,9 +44,10 @@ else
 
 @code {
 
-    private IEnumerable<Card> CardDeck;
-    private IEnumerable<Card> FiveCard;
+    private List<Card> CardDeck;
+    private List<Card> FiveCard;
     private bool GameStarted = false;
+    private int cardsToReplace;
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,9 +55,16 @@ else
     }
     private void StartGame()
     {
-        FiveCard = CardDeck.Take(5);
+        FiveCard = CardDeck.Take(5).ToList();
 
         GameStarted = true;
+    }
+    private void OnClick()
+    {
+        cardsToReplace = FiveCard.Count(x=> x.IsChecked);
+        FiveCard.RemoveAll(x => x.IsChecked.Equals(true));
+        CardDeck.RemoveAll(x => x.IsChecked.Equals(true));
+        FiveCard =
     }
 
 }
