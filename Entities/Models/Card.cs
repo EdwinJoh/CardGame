@@ -8,7 +8,7 @@ public class Card : ICard
     
     public int Rank { get; set; }
     public CardSuit Suits { get; set; }
-    public bool IsChecked { get; set; } = false;
+    public bool IsChecked { get; set; } 
     
 
    public ICard Clone()

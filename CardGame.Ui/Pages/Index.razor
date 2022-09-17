@@ -26,7 +26,7 @@ else
     {
         <div class="row">
 
-            @foreach (var card in FiveCard)
+            @foreach (var card in FiveCards)
             {
                 <CardComponent CardInDeck="card" column="4" />
 
@@ -44,8 +44,9 @@ else
 
 @code {
 
-    private List<Card> CardDeck;
-    private List<Card> FiveCard;
+    private List<Card> CardDeck = new List<Card>();
+    private List<Card> FiveCards = new List<Card>();
+    private List<Card> RemovedCards;
     private bool GameStarted = false;
     private int cardsToReplace;
 
@@ -55,16 +56,40 @@ else
     }
     private void StartGame()
     {
-        FiveCard = CardDeck.Take(5).ToList();
+        FiveCards = CardDeck.Take(5).ToList();
 
         GameStarted = true;
     }
     private void OnClick()
     {
-        cardsToReplace = FiveCard.Count(x=> x.IsChecked);
-        FiveCard.RemoveAll(x => x.IsChecked.Equals(true));
-        CardDeck.RemoveAll(x => x.IsChecked.Equals(true));
-        FiveCard =
+        cardsToReplace = FiveCards.Count(x => x.IsChecked);
+        CardDeck.RemoveAll(x => x.IsChecked == true);
+        FiveCards.RemoveAll(x => x.IsChecked == true);
+        AddNewCards(cardsToReplace);
     }
+    private void RemoveSelectedCard()
+    {
+        foreach (var card in FiveCards)
+        {
 
+            if (card.IsChecked)
+            {
+
+                FiveCards.Remove(card);
+            }
+        }
+    }
+    private void AddNewCards(int cardsToReplace)
+    {
+        CardDeck.Reverse();
+        foreach (var card in CardDeck)
+        {
+            if (FiveCards.Count != 5 && !FiveCards.Contains(card))
+            {
+                FiveCards.Add(card);
+            }
+        }
+
+    }
 }
+
