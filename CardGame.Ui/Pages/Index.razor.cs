@@ -1,14 +1,9 @@
 ﻿using Entities.Models;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CardGame.Ui.Pages;
 
-public partial class Index :ComponentBase
+public partial class Index : ComponentBase
 {
     private List<Card> CardDeck = new List<Card>();
     private List<Card> FiveCards = new List<Card>();
@@ -23,7 +18,6 @@ public partial class Index :ComponentBase
     private void StartGame()
     {
         FiveCards = CardDeck.Take(5).ToList();
-
         GameStarted = true;
     }
 
@@ -31,6 +25,7 @@ public partial class Index :ComponentBase
     {
         SaveHand();
         CardDeck.RemoveAll(x => x.IsChecked == true);
+        AddUsedCardToList(FiveCards);
         FiveCards.RemoveAll(x => x.IsChecked == true);
         AddNewCards();
     }
@@ -51,6 +46,11 @@ public partial class Index :ComponentBase
 
         _request.SaveHand(test);
     }
-
+    private void AddUsedCardToList(List<Card> fiveCards)
+    {
+        foreach (var card in fiveCards)
+            if (card.IsChecked)
+                RemovedCards.Add(card);
+    }
 
 }
