@@ -46,10 +46,11 @@ else
 
     private List<Card> CardDeck = new List<Card>();
     private List<Card> FiveCards = new List<Card>();
+    private List<string> cardToSave = new();
     private List<Card> RemovedCards;
     private bool GameStarted = false;
     private int cardsToReplace;
-
+    //Todo: behöver spara den handen som redan finns dvs fivecards
     protected override async Task OnInitializedAsync()
     {
         CardDeck = await _request.GetNewDeck();
@@ -66,6 +67,7 @@ else
         CardDeck.RemoveAll(x => x.IsChecked == true);
         FiveCards.RemoveAll(x => x.IsChecked == true);
         AddNewCards(cardsToReplace);
+        SaveHand();
     }
     private void RemoveSelectedCard()
     {
@@ -89,7 +91,17 @@ else
                 FiveCards.Add(card);
             }
         }
-
     }
+    private void SaveHand()
+    {
+        string test = "";
+        for(int i =0; i< FiveCards.Count; i++)
+        {
+            test +=($"{FiveCards[i].NamedValue} {FiveCards[i].Suits},");
+        }
+
+        _request.SaveHand(test);
+    }
+
 }
 
