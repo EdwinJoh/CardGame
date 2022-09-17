@@ -1,0 +1,52 @@
+﻿@inject IRequestService _service
+@page "/history"
+
+@if (cardHistory is null)
+{
+    <p>Loading</p>
+}
+else
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Card One</th>
+                <th scope="col">Card Two</th>
+                <th scope="col">Card Three</th>
+                <th scope="col">Card Four</th>
+                <th scope="col">Card Five</th>
+            </tr>
+        </thead>
+        <tbody>
+          @for(int i; i<= cardHistory.Count; i++)
+            {
+                <tr>
+                    <td>@item.CardOne</td>
+                    <td>@item.CardTwo</td>
+                    <td>@item.CardThree</td>
+                    <td>@item.CardFour</td>
+                    <td>@item.CardFive</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+
+@code {
+    IEnumerable<CardHistory> cardHistory;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        cardHistory = await _service.GetAllCardHistoriesAsync();
+        
+    }
+
+
+
+}

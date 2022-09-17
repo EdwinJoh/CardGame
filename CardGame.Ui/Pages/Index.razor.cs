@@ -7,7 +7,7 @@ public partial class Index : ComponentBase
 {
     private List<Card> CardDeck = new List<Card>();
     private List<Card> FiveCards = new List<Card>();
-    private List<Card> RemovedCards;
+    private List<Card> RemovedCards = new();
 
     private bool GameStarted = false;
 
@@ -27,6 +27,7 @@ public partial class Index : ComponentBase
         CardDeck.RemoveAll(x => x.IsChecked == true);
         AddUsedCardToList(FiveCards);
         FiveCards.RemoveAll(x => x.IsChecked == true);
+        CheckIfCardDeckNeedToBeFilled();
         AddNewCards();
     }
 
@@ -46,11 +47,20 @@ public partial class Index : ComponentBase
 
         _request.SaveHand(test);
     }
+
     private void AddUsedCardToList(List<Card> fiveCards)
     {
         foreach (var card in fiveCards)
             if (card.IsChecked)
+            {
                 RemovedCards.Add(card);
+
+            }
     }
 
+    private void CheckIfCardDeckNeedToBeFilled()
+    {
+        if (CardDeck.Count <= 5)
+            CardDeck.AddRange(RemovedCards);
+    }
 }
