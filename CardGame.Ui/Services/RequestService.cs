@@ -21,44 +21,25 @@ public class RequestService : IRequestService
         var respons = await _httpClient.GetFromJsonAsync<List<Card>>("card/deck");
         return respons!;
     }
-    public async Task SaveHand(string hand) //Todo: create facotry for creation ?
+    public async Task SaveHand(string hand) 
     {
-        HandForCreationDto createdHand = new HandForCreationDto();
-        List<string> temp;
-        temp = hand.Split(",").ToList();
-        string[] test = temp.ToArray();
-        createdHand = SetHand(test, createdHand);
-        await _httpClient.PostAsJsonAsync("hand", createdHand);
+        HandForCreationDto handToSave = new HandForCreationDto();
+        List<string> allCardsStored;
+        allCardsStored = hand.Split(",").ToList();
+
+        string[] cardsSplited = allCardsStored.ToArray();
+        handToSave = SetHand(cardsSplited, handToSave);
+
+        await _httpClient.PostAsJsonAsync("hand", handToSave);
     }
-    public  HandForCreationDto SetHand(string[] temp,HandForCreationDto hand)
+    public HandForCreationDto SetHand(string[] SplitedCard, HandForCreationDto hand)
     {
-        hand.CardOne = temp[0];
-        hand.CardTwo = temp[1];
-        hand.CardThree = temp[2];
-        hand.CardFour = temp[3];
-        hand.CardFive = temp[4];
+        hand.CardOne = SplitedCard[0];
+        hand.CardTwo = SplitedCard[1];
+        hand.CardThree = SplitedCard[2];
+        hand.CardFour = SplitedCard[3];
+        hand.CardFive = SplitedCard[4];
         return hand;
     }
-
 }
 
-        //string one ="", two ="", three ="", four ="", five ="";
-        //for (int i = 0; i < hand.Count; i++)
-        //{
-        //    if (i == 0)
-        //        one = hand[i].NamedValue+" "+ hand[i].Suits;
-        //    if (i == 1)
-        //        two = hand[i].NamedValue + " " + hand[i].Suits; ; 
-        //    if (i == 2)
-        //        three = hand[i].NamedValue + " " + hand[i].Suits; ;
-        //    if (i == 3)
-        //        four = hand[i].NamedValue + " " + hand[i].Suits; ;
-        //    if (i == 4)
-        //        five = hand[i].NamedValue + " " + hand[i].Suits; ;
-        //}
-        //createdHand.CardOne = one;
-        //createdHand.CardTwo = two;
-        //createdHand.CardThree = three;
-        //createdHand.CardFour = four;
-        //createdHand.CardFive = five;
-        //await _httpClient.PostAsJsonAsync("hand", createdHand);
