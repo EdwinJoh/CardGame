@@ -11,10 +11,18 @@ public class CardRepositoryTests
     private readonly Mock<IRepositoryManager> _repositoryManagerMock = new();
     private readonly Mock<RepositoryContext> _repositoryContext = new();
     private readonly Mock<ILoggerManager> _loggerManagerMock = new();
-    public CardRepositoryTests()
-    {
-        _cardRepository = new CardRepository(_repositoryContext.Object);
-    }
+    public IEnumerable<CardHistory> GetAll() =>
+        new CardHistory[]
+        {
+            new CardHistory (){Id = 1,CardOne = "1 a",CardTwo = "1 a",CardThree = "1 a",CardFour = "1 a",CardFive = "1 a"},
+            new CardHistory (){Id = 1,CardOne = "1 a",CardTwo = "1 a",CardThree = "1 a",CardFour = "1 a",CardFive = "1 a"},
+            new CardHistory (){Id = 1,CardOne = "1 a",CardTwo = "1 a",CardThree = "1 a",CardFour = "1 a",CardFive = "1 a"}
+        };
+
+    //public CardRepositoryTests()
+    //{
+    //    _cardRepository = new CardRepository(_repositoryContext.Object);
+    //}
 
     [Fact]
     public void GetCardHistoryAsync_ShouldReturnaCardHistory_IfExsist()
@@ -33,6 +41,18 @@ public class CardRepositoryTests
 
         //Assert
         Assert.Equal(cardHistoryId, card.Id);
+    }
+    [Fact]
+    public void GetCardHistoryList_ShouldReturnListOfCardhistory()
+    {
+        //Arrange
+        IEnumerable<CardHistory> cards = GetAll();
+        bool trackChanges = false;
+
+        //Act
+        _repositoryManagerMock.Setup(x => x.CardHistory.GetAllCardHistoryAsync(trackChanges)).ReturnsAsync(cards);
+
+        Assert.Equal(3, cards.Count());
     }
     
 }
