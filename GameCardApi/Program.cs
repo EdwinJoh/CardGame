@@ -23,6 +23,7 @@ builder.Services.ConfigureValidationFilter();
 
 var app = builder.Build();
 
+//Logger Setup
 var logger = app.Services.GetRequiredService<ILoggerManager>();
 app.ConfigureExceptionHandler(logger);
 

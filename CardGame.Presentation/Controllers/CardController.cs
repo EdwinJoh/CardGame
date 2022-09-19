@@ -10,18 +10,18 @@ public class CardController : ControllerBase
     private readonly IServiceManager _service;
     public CardController(IServiceManager service) => _service = service;
 
-
     [HttpGet]
     public async Task<IActionResult> GetCardHistory()
     {
-        var cards = await _service.CardService.GetAllCardHistoryAsync(trackChanges: false);
-        return Ok(cards);
+        var cardHistory = await _service.CardService.GetAllCardHistoryAsync(trackChanges: false);
+        return Ok(cardHistory);
     }
+
     [HttpGet("deck")]
     public async Task<IActionResult> GetNewDeck()
     {
-        var deck = await _service.CardService.GetNewDeck();
-        return Ok(deck);
+        var newDeck = await _service.CardService.GetNewDeck();
+        return Ok(newDeck);
     }
 
 

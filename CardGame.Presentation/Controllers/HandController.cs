@@ -8,7 +8,7 @@ namespace CardGame.Presentation.Controllers;
 
 [Route("hand")]
 [ApiController]
-public class HandController :ControllerBase
+public class HandController : ControllerBase
 {
     private readonly IServiceManager _service;
     public HandController(IServiceManager service) => _service = service;
@@ -17,11 +17,10 @@ public class HandController :ControllerBase
     [ServiceFilter(typeof(ValidationFilterAttribute))]
     public async Task<IActionResult> SaveHand([FromBody] HandForCreationDto hand)
     {
-        
         var saveHand = await _service.HandService.SaveHandAsync(hand);
         return NoContent();
     }
-    
-    
-  
+
+
+
 }

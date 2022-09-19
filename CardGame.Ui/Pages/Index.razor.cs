@@ -6,8 +6,9 @@ namespace CardGame.Ui.Pages;
 public partial class Index : ComponentBase
 {
     private List<Card> CardDeck = new List<Card>();
-    private List<Card> FiveCards = new List<Card>();
+    private List<Card> CardsInHand = new List<Card>();
     private List<Card> RemovedCards = new();
+    private readonly int cardLeft = 1;
 
     private bool GameStarted = false;
 
@@ -17,7 +18,7 @@ public partial class Index : ComponentBase
     }
     private void StartGame()
     {
-        FiveCards = CardDeck.Take(5).ToList();
+        CardsInHand = CardDeck.Take(5).ToList();
         GameStarted = true;
     }
 
@@ -25,8 +26,8 @@ public partial class Index : ComponentBase
     {
         SaveHand();
         CardDeck.RemoveAll(x => x.IsChecked == true);
-        AddUsedCardToList(FiveCards);
-        FiveCards.RemoveAll(x => x.IsChecked == true);
+        AddUsedCardToList(CardsInHand);
+        CardsInHand.RemoveAll(x => x.IsChecked == true);
         CheckIfCardDeckNeedToBeFilled();
         AddNewCards();
     }
@@ -35,15 +36,15 @@ public partial class Index : ComponentBase
     private void AddNewCards()
     {
         foreach (var card in CardDeck)
-            if (FiveCards.Count != 5 && !FiveCards.Contains(card))
-                FiveCards.Add(card);
+            if (CardsInHand.Count != 5 && !CardsInHand.Contains(card))
+                CardsInHand.Add(card);
     }
 
     private void SaveHand()
     {
         string test = "";
-        for (int i = 0; i < FiveCards.Count; i++)
-            test += ($"{FiveCards[i].NamedValue} {FiveCards[i].Suits},");
+        for (int i = 0; i < CardsInHand.Count; i++)
+            test += ($"{CardsInHand[i].NamedValue} {CardsInHand[i].Suits},");
 
         _request.SaveHand(test);
     }
@@ -60,7 +61,7 @@ public partial class Index : ComponentBase
 
     private void CheckIfCardDeckNeedToBeFilled()
     {
-        if (CardDeck.Count <= 5)
+        if (CardDeck.Count < cardLeft)
             CardDeck.AddRange(RemovedCards);
     }
 }

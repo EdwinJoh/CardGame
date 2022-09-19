@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="System\**" />
+    <EmbeddedResource Remove="System\**" />
+    <None Remove="System\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
@@ -30,10 +36,6 @@
     <ProjectReference Include="..\Repository\Repository.csproj" />
     <ProjectReference Include="..\Service.Contracts\Service.Contracts.csproj" />
     <ProjectReference Include="..\Service\Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="System\Controllers\" />
   </ItemGroup>
 
 </Project>

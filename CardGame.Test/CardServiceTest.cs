@@ -2,12 +2,9 @@
 using Contacts.Interfaces;
 using Entities.Exceptions;
 using Entities.Models;
-using Microsoft.Identity.Client;
 using Moq;
 using Service;
 using Service.Contracts.Interfaces;
-using Shared.DataTransferObjects;
-using System.Collections;
 
 namespace CardGame.Test;
 
@@ -61,16 +58,17 @@ public class CardServiceTest
 
     }
     [Fact]
-    public void CheckIfDeckIsFilled_ShouldReturn_DeckNotFilled()
+    public void CheckIfDeckIsFilled_ShouldThrowException_DeckNotFilled()
     {
         //Arrange
         var deck = new List<Card>{
             new Card(),
             new Card(),
             new Card(),
-        };
-                
+                  };
+
         //Assert
         Assert.Throws<DeckNotFilled>(() => _serviceManager.CardService.CheckIfDeckIsFilled(deck));
     }
+
 }

@@ -19,13 +19,13 @@ public class HandService :IHandService
     }
     public async Task<CardHistoryDto> SaveHandAsync(HandForCreationDto hand)
     {
-        var handEntity = _mapper.Map<CardHistory>(hand);
+        var cardHistoryEntity = _mapper.Map<CardHistory>(hand);
 
-        _repository.CardHistory.CreateCardHistory(handEntity);
+        _repository.CardHistory.CreateCardHistory(cardHistoryEntity);
         await _repository.SaveAsync();
 
-        var handToReturn = _mapper.Map<CardHistoryDto>(handEntity);
-        return handToReturn;
+        var cardHistoryToReturn = _mapper.Map<CardHistoryDto>(cardHistoryEntity);
+        return cardHistoryToReturn;
     }
    
 

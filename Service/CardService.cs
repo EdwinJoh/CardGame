@@ -24,16 +24,16 @@ public class CardService : ICardService
     {
         var cardHistory = await _repository.CardHistory.GetAllCardHistoryAsync(trackChanges);
         var cardHistoryDto = _mapper.Map<IEnumerable<CardHistoryDto>>(cardHistory);
+
         return cardHistoryDto;
     }
 
     public Task<List<Card>> GetNewDeck()
     {
+        var newDeck = DeckCard.FillDeck();
+        newDeck = ShuffleDeckOfCards(newDeck);
 
-        var deck = DeckCard.FillDeck();
-        deck = ShuffleDeckOfCards(deck);
-        
-        return Task.FromResult(deck.ToList());
+        return Task.FromResult(newDeck.ToList());
     }
 
     public List<Card> ShuffleDeckOfCards(List<Card> DeckOfCards)
@@ -48,5 +48,5 @@ public class CardService : ICardService
         if (cards.Count < 52)
             throw new DeckNotFilled();
     }
-    
+
 }

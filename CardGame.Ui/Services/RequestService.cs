@@ -24,6 +24,7 @@ public class RequestService : IRequestService
     public async Task SaveHand(string hand) 
     {
         HandForCreationDto handToSave = new HandForCreationDto();
+
         List<string> allCardsStored;
         allCardsStored = hand.Split(",").ToList();
 

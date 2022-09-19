@@ -12,7 +12,6 @@ public sealed class RepositoryManager : IRepositoryManager
 
         _cardRepository = new Lazy<CardRepository>(() => new
         CardRepository(repositoryContext));
-
     }
 
     public ICardRepository CardHistory => _cardRepository.Value;
