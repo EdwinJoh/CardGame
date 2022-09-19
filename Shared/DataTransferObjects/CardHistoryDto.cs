@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    public record CardHistoryDto( string CardOne,string CardTwo,string CardThree,string CardFour,string CardFive);
+    public record CardHistoryDto( int Id,string CardOne,string CardTwo,string CardThree,string CardFour,string CardFive);
    
 }

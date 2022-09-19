@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Contacts.Interfaces;
+using Entities.Exceptions;
 using Entities.Models;
 using Microsoft.Identity.Client;
 using Moq;
@@ -21,6 +22,7 @@ public class CardServiceTest
     {
         _serviceManager = new ServiceManager(_repositoryManagerMock.Object, _loggerManagerMock.Object, _mapperMock.Object);
     }
+
     public IEnumerable<CardHistory> GetAll() =>
         new CardHistory[]
         {
@@ -30,15 +32,45 @@ public class CardServiceTest
         };
 
     [Fact]
-    public  void GetAllCardHistoryAsync_ShouldReturnListOfCardHistory()
+    public void GetAllCardHistoryAsync_ShouldReturnListOfCardHistory()
     {
-        bool trackChanges = false;
         //Arrange
+        bool trackChanges = false;
         IEnumerable<CardHistory> cards = GetAll();
 
-
+        //Act
         _repositoryManagerMock.Setup(x => x.CardHistory.GetAllCardHistoryAsync(trackChanges)).ReturnsAsync(cards);
 
+        //Assert
         Assert.Equal(3, cards.Count());
+    }
+
+    [Fact]
+    public async void GetNewDeck_ShouldReturnDeckOf52Card()
+    {
+        //Arrange
+        var deck = new List<Card>();
+        int deckLengt = 52;
+
+        //Act
+        deck = await _serviceManager.CardService.GetNewDeck();
+
+        //Assert
+        Assert.Equal(deckLengt, deck.Count());
+
+
+    }
+    [Fact]
+    public void CheckIfDeckIsFilled_ShouldReturn_DeckNotFilled()
+    {
+        //Arrange
+        var deck = new List<Card>{
+            new Card(),
+            new Card(),
+            new Card(),
+        };
+                
+        //Assert
+        Assert.Throws<DeckNotFilled>(() => _serviceManager.CardService.CheckIfDeckIsFilled(deck));
     }
 }

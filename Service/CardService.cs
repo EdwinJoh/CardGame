@@ -33,8 +33,7 @@ public class CardService : ICardService
         var deck = DeckCard.FillDeck();
         deck = ShuffleDeckOfCards(deck);
         
-        var cardDto = _mapper.Map<List<Card>>(deck);
-        return Task.FromResult(cardDto.ToList());
+        return Task.FromResult(deck.ToList());
     }
 
     public List<Card> ShuffleDeckOfCards(List<Card> DeckOfCards)
