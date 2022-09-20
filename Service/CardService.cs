@@ -7,11 +7,15 @@ using Shared.DataTransferObjects;
 
 namespace Service;
 
+/// <summary>
+/// Service layer / business layer for the cards in the deck
+/// </summary>
 public class CardService : ICardService
 {
     private readonly IRepositoryManager _repository;
     private readonly ILoggerManager _logger;
     private readonly IMapper _mapper;
+    private readonly int deckSize = 52;
     public CardDeck DeckCard { get; set; } = new CardDeck();
     public CardService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
     {
@@ -28,12 +32,12 @@ public class CardService : ICardService
         return cardHistoryDto;
     }
 
-    public Task<List<Card>> GetNewDeck()
+    public async Task<List<Card>> GetNewDeckAsync()
     {
         var newDeck = DeckCard.FillDeck();
         newDeck = ShuffleDeckOfCards(newDeck);
 
-        return Task.FromResult(newDeck.ToList());
+        return await Task.FromResult(newDeck.ToList());
     }
 
     public List<Card> ShuffleDeckOfCards(List<Card> DeckOfCards)
@@ -45,8 +49,12 @@ public class CardService : ICardService
     }
     public void CheckIfDeckIsFilled(List<Card> cards)
     {
-        if (cards.Count < 52)
+        if (cards.Count < deckSize)
+        {
+            _logger.LogError($"the deck is not filled " + new DeckNotFilled());
             throw new DeckNotFilled();
+
+        }
     }
 
 }

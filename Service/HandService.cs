@@ -6,6 +6,9 @@ using Shared.DataTransferObjects;
 
 namespace Service;
 
+/// <summary>
+/// /// Service layer / business layer for the "hand" / cardhistory
+/// </summary>
 public class HandService :IHandService
 {
     private readonly IRepositoryManager _repository;

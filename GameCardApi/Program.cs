@@ -6,8 +6,10 @@ using NLog;
 var builder = WebApplication.CreateBuilder(args);
 
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),"/nlog.config"));
+
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(CardGame.Presentation.AssemblyReference).Assembly);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

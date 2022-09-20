@@ -3,15 +3,18 @@ using Entities.Enums;
 
 namespace Entities.Models;
 
+/// <summary>
+/// ConcretePrototype class
+/// </summary>
 public class Card : ICard
 {
     
     public int Rank { get; set; }
     public CardSuit Suits { get; set; }
-    public bool IsChecked { get; set; } 
-    
+    public bool IsChecked { get; set; }
 
-   public ICard Clone()
+    
+    public ICard Clone()
     {
         return (ICard)MemberwiseClone();
     }
@@ -20,6 +23,7 @@ public class Card : ICard
     {
         Console.WriteLine($"{Rank}, {Suits}");
     }
+
     public string NamedValue
     {
         get

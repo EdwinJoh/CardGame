@@ -50,7 +50,7 @@ public class CardServiceTest
         int deckLengt = 52;
 
         //Act
-        deck = await _serviceManager.CardService.GetNewDeck();
+        deck = await _serviceManager.CardService.GetNewDeckAsync();
 
         //Assert
         Assert.Equal(deckLengt, deck.Count());

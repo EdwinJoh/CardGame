@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore.Design;
 using Repository;
 
 namespace GameCardApi.ContextFactory;
-
+/// <summary>
+/// Due to that we have the repository in another project / layer we need this factory to create / migrate / update the database from api
+/// </summary>
 public class RepositoryContextFactory :IDesignTimeDbContextFactory<RepositoryContext>
 {
     public RepositoryContext CreateDbContext(string[] args)

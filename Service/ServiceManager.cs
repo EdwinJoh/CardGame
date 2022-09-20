@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Contacts.Interfaces;
 using Service.Contracts.Interfaces;
-
 namespace Service;
 
+/// <summary>
+/// This class manage all our service layer in the application
+/// </summary>
 public class ServiceManager : IServiceManager
 {
     private readonly Lazy<CardService> _cardHistoryService;
@@ -15,7 +17,7 @@ public class ServiceManager : IServiceManager
         CardService(repositoryManager, logger, mapper));
 
         _handService = new Lazy<HandService>(() => new
-        HandService(repositoryManager,logger, mapper));
+        HandService(repositoryManager, logger, mapper));
 
     }
     public ICardService CardService => _cardHistoryService.Value;

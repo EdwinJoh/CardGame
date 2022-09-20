@@ -4,7 +4,9 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
 namespace CardGame.Ui.Services;
-
+/// <summary>
+/// This class is responsible to call our API from our UI 
+/// </summary>
 public class RequestService : IRequestService
 {
 

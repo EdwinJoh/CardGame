@@ -20,7 +20,7 @@ public class CardController : ControllerBase
     [HttpGet("deck")]
     public async Task<IActionResult> GetNewDeck()
     {
-        var newDeck = await _service.CardService.GetNewDeck();
+        var newDeck = await _service.CardService.GetNewDeckAsync();
         return Ok(newDeck);
     }
 
