@@ -1,4 +1,5 @@
 ﻿@inject IRequestService _service
+@inject NavigationManager _nav
 @page "/history"
 
 @if (cardHistory is null)
@@ -7,7 +8,6 @@
 }
 else
 {
-
     <table class="table">
         <thead>
             <tr>
@@ -29,25 +29,31 @@ else
                     <td>@item.CardThree</td>
                     <td>@item.CardFour</td>
                     <td>@item.CardFive</td>
+                    <button type="button" class="btn btn-danger" @onclick="(()=> RemoveCard(item.Id))">Delete</button>
                 </tr>
             }
         </tbody>
     </table>
+    
 }
 
 
 
 
 @code {
-    IEnumerable<CardHistory> cardHistory;
-
+    IEnumerable<CardHistory>? cardHistory; 
+    public bool DeleteDialogOpen { get; set; } = false;
 
     protected override async Task OnInitializedAsync()
     {
         cardHistory = await _service.GetAllCardHistoriesAsync();
         cardHistory.Reverse();
     }
-
+    private void RemoveCard(int id)
+    {
+        _service.RemoveCard(id);
+        _nav.NavigateTo(_nav.Uri, forceLoad: true);
+    }
 
 
 }

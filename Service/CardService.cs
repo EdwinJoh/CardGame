@@ -56,5 +56,14 @@ public class CardService : ICardService
 
         }
     }
+    public async Task DeleteCardHistoryAsync(int id, bool trackChanges)
+    {
+        await _repository.CardHistory.GetCardHistoryAsync(id, trackChanges);
+
+        var cardHistory = await _repository.CardHistory.GetCardHistoryAsync(id, trackChanges);
+        _repository.CardHistory.DeleteCardHistory(cardHistory);
+        await _repository.SaveAsync();
+    }
+
 
 }

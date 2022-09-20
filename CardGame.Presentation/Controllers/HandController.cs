@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts.Interfaces;
 using Shared.DataTransferObjects;
+using System.Net;
 
 namespace CardGame.Presentation.Controllers;
 
@@ -19,6 +20,9 @@ public class HandController : ControllerBase
         var saveHand = await _service.HandService.SaveHandAsync(hand);
         return NoContent();
     }
+
+   
+
 
 
 

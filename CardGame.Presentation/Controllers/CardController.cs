@@ -23,6 +23,12 @@ public class CardController : ControllerBase
         var newDeck = await _service.CardService.GetNewDeckAsync();
         return Ok(newDeck);
     }
+    [HttpDelete("delete/{id:int}")]
+    public async Task<IActionResult> DeleteCardHistory(int id)
+    {
+        await _service.CardService.DeleteCardHistoryAsync(id, trackChanges:false);
+        return NoContent();
+    }
 
 
 }

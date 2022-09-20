@@ -9,5 +9,7 @@ public interface ICardService
     Task<List<Card>> GetNewDeckAsync();
     List<Card> ShuffleDeckOfCards(List<Card> DeckOfCrads);
     void CheckIfDeckIsFilled(List<Card> cards);
+    Task DeleteCardHistoryAsync(int id, bool trackChanges);
+   
     
 }

@@ -23,7 +23,7 @@ public class RequestService : IRequestService
         var respons = await _httpClient.GetFromJsonAsync<List<Card>>("card/deck");
         return respons!;
     }
-    public async Task SaveHand(string hand) 
+    public async Task SaveHand(string hand)
     {
         HandForCreationDto handToSave = new HandForCreationDto();
 
@@ -43,6 +43,10 @@ public class RequestService : IRequestService
         hand.CardFour = SplitedCard[3];
         hand.CardFive = SplitedCard[4];
         return hand;
+    }
+    public async Task RemoveCard(int id)
+    {
+         await _httpClient.DeleteAsync($"card/delete/{id}");
     }
 }
 
