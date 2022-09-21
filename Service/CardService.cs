@@ -23,7 +23,11 @@ public class CardService : ICardService
         _logger = logger;
         _mapper = mapper;
     }
-
+    /// <summary>
+    /// This method Get all cardhistory from our Repository layer and map it to cardhistory Dto that retrun to the customer 
+    /// </summary>
+    /// <param name="trackChanges"></param>
+    /// <returns></returns>
     public async Task<IEnumerable<CardHistoryDto>> GetAllCardHistoryAsync(bool trackChanges)
     {
         var cardHistory = await _repository.CardHistory.GetAllCardHistoryAsync(trackChanges);
@@ -32,6 +36,11 @@ public class CardService : ICardService
         return cardHistoryDto;
     }
 
+    /// <summary>
+    /// This method create an new deck to the application and shuffle it so when
+    ///  we return the list to the customer the list is shuffled
+    /// </summary>
+    /// <returns></returns>
     public async Task<List<Card>> GetNewDeckAsync()
     {
         var newDeck = DeckCard.FillDeck();
@@ -40,6 +49,11 @@ public class CardService : ICardService
         return await Task.FromResult(newDeck.ToList());
     }
 
+    /// <summary>
+    /// Take in one list of deck of cards and shuffle the card deck for the application
+    /// </summary>
+    /// <param name="DeckOfCards"></param>
+    /// <returns></returns>
     public List<Card> ShuffleDeckOfCards(List<Card> DeckOfCards)
     {
         CheckIfDeckIsFilled(DeckOfCards);
@@ -47,6 +61,12 @@ public class CardService : ICardService
 
         return DeckOfCards;
     }
+
+    /// <summary>
+    /// This method is responsible to check if the deck of cards is filled with the number of cards needed in a deck.
+    /// </summary>
+    /// <param name="cards">List of cards</param>
+    /// <exception cref="DeckNotFilled"></exception>
     public void CheckIfDeckIsFilled(List<Card> cards)
     {
         if (cards.Count < deckSize)
@@ -56,6 +76,13 @@ public class CardService : ICardService
 
         }
     }
+
+    /// <summary>
+    /// This method calls the repository layer to delete an cardhistory from the database.
+    /// </summary>
+    /// <param name="id">Id of the cardhistory we want to remove.</param>
+    /// <param name="trackChanges"></param>
+    /// <returns></returns>
     public async Task DeleteCardHistoryAsync(int id, bool trackChanges)
     {
         await _repository.CardHistory.GetCardHistoryAsync(id, trackChanges);

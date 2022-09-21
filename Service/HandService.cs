@@ -20,6 +20,12 @@ public class HandService :IHandService
         _logger = logger;
         _mapper = mapper;
     }
+
+    /// <summary>
+    /// This method calls the repository layer and save the cardhistory to the database
+    /// </summary>
+    /// <param name="hand">The cardhistory that we want to save to the database</param>
+    /// <returns></returns>
     public async Task<CardHistoryDto> SaveHandAsync(HandForCreationDto hand)
     {
         var cardHistoryEntity = _mapper.Map<CardHistory>(hand);

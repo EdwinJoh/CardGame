@@ -13,16 +13,30 @@ public class RequestService : IRequestService
     private readonly HttpClient _httpClient;
     public RequestService(HttpClient httpClient) => _httpClient = httpClient;
 
+    /// <summary>
+    /// This method calls the API and gets all the cardhistory
+    /// </summary>
+    /// <returns></returns>
     public async Task<IEnumerable<CardHistory>> GetAllCardHistoriesAsync()
     {
         var respons = await _httpClient.GetFromJsonAsync<IEnumerable<CardHistory>>("card");
         return respons!;
     }
+
+    /// <summary>
+    /// This method calls the API and get an new card of deck to 
+    /// </summary>
+    /// <returns></returns>
     public async Task<List<Card>> GetNewDeck()
     {
         var respons = await _httpClient.GetFromJsonAsync<List<Card>>("card/deck");
         return respons!;
     }
+    /// <summary>
+    /// This method calls the api for saving the cards that the user have had in his "hand"
+    /// </summary>
+    /// <param name="hand"></param>
+    /// <returns></returns>
     public async Task SaveHand(string hand)
     {
         HandForCreationDto handToSave = new HandForCreationDto();
@@ -35,6 +49,13 @@ public class RequestService : IRequestService
 
         await _httpClient.PostAsJsonAsync("hand", handToSave);
     }
+
+    /// <summary>
+    /// This mehod saves the value to the hand for creation so we can save it to the database
+    /// </summary>
+    /// <param name="SplitedCard"></param>
+    /// <param name="hand"></param>
+    /// <returns></returns>
     public HandForCreationDto SetHand(string[] SplitedCard, HandForCreationDto hand)
     {
         hand.CardOne = SplitedCard[0];
@@ -44,6 +65,7 @@ public class RequestService : IRequestService
         hand.CardFive = SplitedCard[4];
         return hand;
     }
+
     public async Task RemoveCard(int id)
     {
          await _httpClient.DeleteAsync($"card/delete/{id}");
