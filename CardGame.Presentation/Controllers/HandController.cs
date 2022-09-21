@@ -12,6 +12,7 @@ public class HandController : ControllerBase
 {
     private readonly IServiceManager _service;
     public HandController(IServiceManager service) => _service = service;
+   
 
     [HttpPost]
     [ServiceFilter(typeof(ValidationFilterAttribute))]

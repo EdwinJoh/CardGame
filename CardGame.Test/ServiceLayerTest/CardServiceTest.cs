@@ -6,7 +6,7 @@ using Moq;
 using Service;
 using Service.Contracts.Interfaces;
 
-namespace CardGame.Test;
+namespace CardGame.Test.ServiceLayerTest;
 
 public class CardServiceTest
 {
