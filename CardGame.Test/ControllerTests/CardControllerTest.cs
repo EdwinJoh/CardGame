@@ -12,8 +12,12 @@ public class CardControllerTest
 {
     private readonly IServiceManager serviceManager;
     private readonly bool trackChanges = false;
-    [Fact]
-    public async Task Get_OnSuccsess_ReturnStatusCode200()
+
+    [Theory]
+    [InlineData(200)] // Ok
+    [InlineData(204)] // noContent
+    [InlineData(400)] // not found 
+    public async Task Get_OnSuccsess_ReturnStatusCode200(int statusCode)
     {
         //Arrange
         var mockservice = new Mock<IServiceManager>();
@@ -26,10 +30,13 @@ public class CardControllerTest
         //Act
         var result = (OkObjectResult)await sut.GetCardHistory();
         //Assert
-        result.StatusCode.Should().Be(200);
+        result.StatusCode.Should().Be(statusCode);
     }
-    [Fact]
-    private async Task GetDeck_OnSuccsess_ReturnStatusCode200()
+    [Theory]
+    [InlineData(200)] // Ok
+    [InlineData(204)] // noContent
+    [InlineData(400)] // not found 
+    private async Task GetDeck_OnSuccsess_ReturnStatusCode200(int statusCode)
     {
         //Arrange
         var mockservice = new Mock<IServiceManager>();
@@ -42,10 +49,13 @@ public class CardControllerTest
         var result = (OkObjectResult)await sut.GetNewDeck();
 
         //Assert
-        result.StatusCode.Should().Be(200);
+        result.StatusCode.Should().Be(statusCode);
     }
-    [Fact]
-    public async Task DeleteCardHistory_ShoudReturnStatusCode204()
+    [Theory]
+    [InlineData(200)] // Ok
+    [InlineData(204)] // noContent
+    [InlineData(400)] // not found 
+    public async Task DeleteCardHistory_ShoudReturnStatusCode204(int statusCode)
     {
         //Arrange
         var cardTemp = new CardHistory { Id =1};
@@ -59,5 +69,6 @@ public class CardControllerTest
         //Act
         var result = (NoContentResult)await sut.DeleteCardHistory(cardTemp.Id);
         //Assert
+        result.StatusCode.Should().Be(statusCode);
     }
 }

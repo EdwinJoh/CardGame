@@ -21,8 +21,11 @@ public class CardRepositoryTests
         };
 
 
-    [Fact]
-    public void GetCardHistoryAsync_ShouldReturnaCardHistory_IfExsist()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(12)]
+    public void GetCardHistoryAsync_ShouldReturnaCardHistory_IfExsist(int id)
     {
         //Arrange
         var cardHistoryId = 1;
@@ -37,10 +40,13 @@ public class CardRepositoryTests
         _repositoryManagerMock.Setup(x => x.CardHistory.GetCardHistoryAsync(cardHistoryId, trackChanges));
 
         //Assert
-        Assert.Equal(cardHistoryId, card.Id);
+        Assert.Equal(id, card.Id);
     }
-    [Fact]
-    public void GetCardHistoryList_ShouldReturnListOfCardhistory()
+    [Theory]
+    [InlineData(3)]
+    [InlineData(2)]
+    [InlineData(12)]
+    public void GetCardHistoryList_ShouldReturnListOfCardhistory(int count)
     {
         //Arrange
         IEnumerable<CardHistory> cards = GetAll();
@@ -49,7 +55,7 @@ public class CardRepositoryTests
         //Act
         _repositoryManagerMock.Setup(x => x.CardHistory.GetAllCardHistoryAsync(trackChanges)).ReturnsAsync(cards);
 
-        Assert.Equal(3, cards.Count());
+        Assert.Equal(count, cards.Count());
     }
 
 }
