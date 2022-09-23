@@ -42,11 +42,11 @@ public partial class Index : ComponentBase
 
     private void SaveHand()
     {
-        string test = "";
+        string allCardsInOneString = "";
         for (int i = 0; i < CardsInHand.Count; i++)
-            test += ($"{CardsInHand[i].NamedValue} {CardsInHand[i].Suits},");
+            allCardsInOneString += ($"{CardsInHand[i].NamedValue} {CardsInHand[i].Suits},");
 
-        _request.SaveHand(test);
+        _request.SaveHand(allCardsInOneString);
     }
 
     private void AddUsedCardToList(List<Card> fiveCards)

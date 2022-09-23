@@ -18,7 +18,7 @@ public class HandController : ControllerBase
     [ServiceFilter(typeof(ValidationFilterAttribute))]
     public async Task<IActionResult> SaveHand([FromBody] HandForCreationDto hand)
     {
-        var saveHand = await _service.HandService.SaveHandAsync(hand);
+         await _service.HandService.SaveHandAsync(hand);
         return NoContent();
     }
 
