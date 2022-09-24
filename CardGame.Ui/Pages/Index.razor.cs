@@ -55,7 +55,7 @@ public partial class Index : ComponentBase
             if (card.IsChecked)
             {
                 RemovedCards.Add(card);
-
+                card.IsChecked = false;
             }
     }
 
