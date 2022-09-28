@@ -5,6 +5,5 @@
 public interface ICard
 {
     ICard Clone();
-    void GetCard();
-
+   
 }

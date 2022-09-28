@@ -8,20 +8,15 @@ namespace Entities.Models;
 /// </summary>
 public class Card : ICard
 {
-    
+
     public int Rank { get; set; }
     public CardSuit Suits { get; set; }
     public bool IsChecked { get; set; }
 
-    
+
     public ICard Clone()
     {
         return (ICard)MemberwiseClone();
-    }
-
-    public void GetCard()
-    {
-        Console.WriteLine($"{Rank}, {Suits}");
     }
 
     public string NamedValue
@@ -50,5 +45,5 @@ public class Card : ICard
             return name;
         }
     }
-   
+
 }
