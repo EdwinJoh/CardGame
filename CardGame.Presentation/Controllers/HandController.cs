@@ -1,7 +1,7 @@
 ﻿using CardGame.Presentation.ActionFilters;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts.Interfaces;
-using Shared.DataTransferObjects;
+using SharedHelpers.DataTransferObjects;
 using System.Net;
 
 namespace CardGame.Presentation.Controllers;

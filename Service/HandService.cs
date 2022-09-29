@@ -2,7 +2,7 @@
 using Contacts.Interfaces;
 using Entities.Models;
 using Service.Contracts.Interfaces;
-using Shared.DataTransferObjects;
+using SharedHelpers.DataTransferObjects;
 
 namespace Service;
 

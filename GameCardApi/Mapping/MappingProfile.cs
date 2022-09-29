@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Entities.Models;
-using Shared.DataTransferObjects;
+using SharedHelpers.DataTransferObjects;
 
 namespace CardGameApi.Mapping;
 
@@ -13,5 +13,6 @@ public class MappingProfile : Profile
         CreateMap<HandForCreationDto,CardHistory>();
 
         CreateMap<CardHistoryDto, CardHistory>();
+        CreateMap<Card,CardDto>();
     }
 }

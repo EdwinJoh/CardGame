@@ -10,7 +10,7 @@ public class Card : ICard
 {
 
     public int Rank { get; set; }
-    public CardSuit Suits { get; set; }
+    public CardSuit Suite { get; set; }
     public bool IsChecked { get; set; }
 
 

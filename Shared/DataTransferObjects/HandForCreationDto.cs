@@ -1,4 +1,4 @@
-﻿namespace Shared.DataTransferObjects;
+﻿namespace SharedHelpers.DataTransferObjects;
 
 public record HandForCreationDto
 {

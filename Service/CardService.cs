@@ -3,7 +3,7 @@ using Contacts.Interfaces;
 using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts.Interfaces;
-using Shared.DataTransferObjects;
+using SharedHelpers.DataTransferObjects;
 
 namespace Service;
 
@@ -41,12 +41,13 @@ public class CardService : ICardService
     ///  we return the list to the customer the list is shuffled
     /// </summary>
     /// <returns></returns>
-    public async Task<List<Card>> GetNewDeckAsync()
+    public async Task<List<CardDto>> GetNewDeckAsync()
     {
         var newDeck = DeckCard.FillDeck();
         newDeck = ShuffleDeckOfCards(newDeck);
+        var newDeckDto = _mapper.Map<List<CardDto>>(newDeck);
 
-        return await Task.FromResult(newDeck.ToList());
+        return await Task.FromResult(newDeckDto.ToList());
     }
 
     /// <summary>

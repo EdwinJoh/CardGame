@@ -1,5 +1,5 @@
 ﻿using Entities.Models;
-using Shared.DataTransferObjects;
+using SharedHelpers.DataTransferObjects;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
@@ -17,9 +17,9 @@ public class RequestService : IRequestService
     /// This method calls the API and gets all the cardhistory
     /// </summary>
     /// <returns></returns>
-    public async Task<IEnumerable<CardHistory>> GetAllCardHistoriesAsync()
+    public async Task<IEnumerable<CardHistoryDto>> GetAllCardHistoriesAsync()
     {
-        var respons = await _httpClient.GetFromJsonAsync<IEnumerable<CardHistory>>("card");
+        var respons = await _httpClient.GetFromJsonAsync<IEnumerable<CardHistoryDto>>("card");
         return respons!;
     }
 
@@ -27,9 +27,9 @@ public class RequestService : IRequestService
     /// This method calls the API and get an new card of deck to 
     /// </summary>
     /// <returns></returns>
-    public async Task<List<Card>> GetNewDeck()
+    public async Task<List<CardDto>> GetNewDeck()
     {
-        var respons = await _httpClient.GetFromJsonAsync<List<Card>>("card/deck");
+        var respons = await _httpClient.GetFromJsonAsync<List<CardDto>>("card/deck");
         return respons!;
     }
     /// <summary>

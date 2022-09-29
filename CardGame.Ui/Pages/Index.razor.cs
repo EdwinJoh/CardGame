@@ -1,13 +1,14 @@
 ﻿using Entities.Models;
 using Microsoft.AspNetCore.Components;
+using SharedHelpers.DataTransferObjects;
 
 namespace CardGame.Ui.Pages;
 
 public partial class Index : ComponentBase
 {
-    private List<Card> CardDeck = new List<Card>();
-    private List<Card> CardsInHand = new List<Card>();
-    private List<Card> RemovedCards = new();
+    private List<CardDto> CardDeck = new List<CardDto>();
+    private List<CardDto> CardsInHand = new List<CardDto>();
+    private List<CardDto> RemovedCards = new();
     private readonly int cardLeft = 1;
 
     private bool GameStarted = false;
@@ -44,12 +45,12 @@ public partial class Index : ComponentBase
     {
         string allCardsInOneString = "";
         for (int i = 0; i < CardsInHand.Count; i++)
-            allCardsInOneString += ($"{CardsInHand[i].NamedValue} {CardsInHand[i].Suits},");
+            allCardsInOneString += ($"{CardsInHand[i].NamedValue} {CardsInHand[i].Suite},");
 
         _request.SaveHand(allCardsInOneString);
     }
 
-    private void AddUsedCardToList(List<Card> fiveCards)
+    private void AddUsedCardToList(List<CardDto> fiveCards)
     {
         foreach (var card in fiveCards)
             if (card.IsChecked)

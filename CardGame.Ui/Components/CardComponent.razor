@@ -2,6 +2,7 @@
 
 
 
+
 <div class="col-sm-@column">
     <div class="card">
         <div class="card-body">
@@ -11,7 +12,7 @@
             </div>
 
             <div class="box-center">
-                <h4>@CardInDeck.Suits</h4>
+                <h4>@CardInDeck.Suite</h4>
             </div>
 
             <div class="box-right">
@@ -28,7 +29,7 @@
 
 @code {
     [Parameter]
-    public Card CardInDeck { get; set; }
+    public CardDto CardInDeck { get; set; }
     [Parameter]
     public int column { get; set; }
    

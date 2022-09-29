@@ -21,7 +21,7 @@ public class CardDeck
             int val = i % 13 + 2;
             Card cardCopy = (Card)CardPrototype.Clone();
             cardCopy.Rank = val;
-            cardCopy.Suits = suite;
+            cardCopy.Suite = suite;
             Cards.Add(cardCopy);
         }
         return Cards;
