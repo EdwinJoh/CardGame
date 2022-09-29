@@ -5,6 +5,7 @@ using Entities.Models;
 using Moq;
 using Service;
 using Service.Contracts.Interfaces;
+using SharedHelpers.DataTransferObjects;
 
 namespace CardGame.Test.ServiceLayerTest;
 
@@ -27,7 +28,16 @@ public class CardServiceTest
             new CardHistory (){Id = 1,CardOne = "1 a",CardTwo = "1 a",CardThree = "1 a",CardFour = "1 a",CardFive = "1 a"},
             new CardHistory (){Id = 1,CardOne = "1 a",CardTwo = "1 a",CardThree = "1 a",CardFour = "1 a",CardFive = "1 a"}
         };
+    public List<Card> GetNewDeck()
+    {
 
+        List<Card> DeckOfCards = new();
+        CardDeck cardDeck = new();
+
+        DeckOfCards = cardDeck.FillDeck();
+       
+        return DeckOfCards;
+    }
     [Fact]
     public void GetAllCardHistoryAsync_ShouldReturnListOfCardHistory()
     {
@@ -50,7 +60,7 @@ public class CardServiceTest
         int deckLengt = 52;
 
         //Act
-        deck = await _serviceManager.CardService.GetNewDeckAsync();
+        deck = GetNewDeck();
 
         //Assert
         Assert.Equal(deckLengt, deck.Count());

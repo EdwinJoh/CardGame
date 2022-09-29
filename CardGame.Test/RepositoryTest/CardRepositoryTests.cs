@@ -28,7 +28,7 @@ public class CardRepositoryTests
     public void GetCardHistoryAsync_ShouldReturnaCardHistory_IfExsist(int id)
     {
         //Arrange
-        var cardHistoryId = 1;
+        var cardHistoryId = id;
         bool trackChanges = false;
 
         CardHistory card = new CardHistory
@@ -44,8 +44,7 @@ public class CardRepositoryTests
     }
     [Theory]
     [InlineData(3)]
-    [InlineData(2)]
-    [InlineData(12)]
+
     public void GetCardHistoryList_ShouldReturnListOfCardhistory(int count)
     {
         //Arrange

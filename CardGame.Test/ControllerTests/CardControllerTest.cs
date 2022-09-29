@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Service.Contracts.Interfaces;
-using Shared.DataTransferObjects;
+using SharedHelpers.DataTransferObjects;
 
 namespace CardGame.Test.ControllerTests;
 
@@ -14,9 +14,7 @@ public class CardControllerTest
     private readonly bool trackChanges = false;
 
     [Theory]
-    [InlineData(200)] // Ok
-    [InlineData(204)] // noContent
-    [InlineData(400)] // not found 
+    [InlineData(200)] 
     public async Task Get_OnSuccsess_ReturnStatusCode200(int statusCode)
     {
         //Arrange
@@ -31,18 +29,38 @@ public class CardControllerTest
         var result = (OkObjectResult)await sut.GetCardHistory();
         //Assert
         result.StatusCode.Should().Be(statusCode);
+
     }
+
     [Theory]
-    [InlineData(200)] // Ok
-    [InlineData(204)] // noContent
-    [InlineData(400)] // not found 
+    [InlineData(204)]
+    [InlineData(400)]
+    [InlineData(500)]
+    public async Task Get_OnNotSuccess_ShouldNotReturn200(int statusCode)
+    {
+        var mockservice = new Mock<IServiceManager>();
+        mockservice
+            .Setup(x => x.CardService.GetAllCardHistoryAsync(trackChanges))
+            .ReturnsAsync(new List<CardHistoryDto>());
+
+        var sut = new CardController(mockservice.Object);
+
+        //Act
+        var result = (OkObjectResult)await sut.GetCardHistory();
+        //Assert
+        result.StatusCode.Should().NotBe(statusCode);
+    }
+
+    [Theory]
+    [InlineData(200)] 
+   
     private async Task GetDeck_OnSuccsess_ReturnStatusCode200(int statusCode)
     {
         //Arrange
         var mockservice = new Mock<IServiceManager>();
         mockservice
             .Setup(x => x.CardService.GetNewDeckAsync())
-            .ReturnsAsync(new List<Card>());
+            .ReturnsAsync(new List<CardDto>());
         var sut = new CardController(mockservice.Object);
 
         //Act
@@ -51,18 +69,18 @@ public class CardControllerTest
         //Assert
         result.StatusCode.Should().Be(statusCode);
     }
+
     [Theory]
-    [InlineData(200)] // Ok
-    [InlineData(204)] // noContent
-    [InlineData(400)] // not found 
+    [InlineData(204)] // Ok
+    
     public async Task DeleteCardHistory_ShoudReturnStatusCode204(int statusCode)
     {
         //Arrange
-        var cardTemp = new CardHistory { Id =1};
+        var cardTemp = new CardHistory { Id = 1 };
         var mockservice = new Mock<IServiceManager>();
         mockservice
           .Setup(x => x.CardService.DeleteCardHistoryAsync(cardTemp.Id, trackChanges));
-               
+
 
         var sut = new CardController(mockservice.Object);
 

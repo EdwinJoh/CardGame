@@ -26,9 +26,9 @@ public partial class Index : ComponentBase
     private void OnClick()
     {
         SaveHand();
-        CardDeck.RemoveAll(x => x.IsChecked == true);
-        AddUsedCardToList(CardsInHand);
         CardsInHand.RemoveAll(x => x.IsChecked == true);
+        AddUsedCardToList(CardDeck);
+        CardDeck.RemoveAll(x => x.IsChecked == true);
         CheckIfCardDeckNeedToBeFilled();
         AddNewCards();
     }
