@@ -56,13 +56,16 @@ public partial class Index : ComponentBase
             if (card.IsChecked)
             {
                 RemovedCards.Add(card);
-                card.IsChecked = false;
             }
     }
 
     private void CheckIfCardDeckNeedToBeFilled()
     {
         if (CardDeck.Count < cardLeft)
+        {
+            foreach(var card in RemovedCards) 
+                card.IsChecked = true;
             CardDeck.AddRange(RemovedCards);
+        }
     }
 }
